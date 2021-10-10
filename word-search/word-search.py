@@ -4,42 +4,44 @@ from typing import List
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        for rowIndex, row in enumerate(board):
-            for columnIndex in range(len(row)):
-                if self.foundWordAt(board, word, rowIndex, columnIndex):
+        for row_index, row in enumerate(board):
+            for column_index in range(len(row)):
+                if self.found_word_at(board, word, row_index, column_index):
                     return True
         return False
-    
-    def foundWordAt(self, board: List[List[str]], word: str, row: int, column: int) -> bool:
+
+    def found_word_at(self, board: List[List[str]], word: str, row: int, column: int) -> bool:
         if not word:
             return True
-             
-        if self.outOfBounds(board, row, column):
+
+        if self.out_of_bounds(board, row, column):
             return False
-        
-        currentLetter = board[row][column]
-        
-        if currentLetter is not word[0]:
+
+        current_letter = board[row][column]
+
+        if current_letter is not word[0]:
             return False
-        
+
+        # Set the board at position to "" to act as marking visited
         board[row][column] = ""
-        
-        found = (self.foundWordAt(board, word[1:], row - 1, column) or 
-                 self.foundWordAt(board, word[1:], row, column + 1) or
-                 self.foundWordAt(board, word[1:], row + 1, column) or
-                 self.foundWordAt(board, word[1:], row, column - 1))
-        
-        board[row][column] = currentLetter
-        
+
+        found = (self.found_word_at(board, word[1:], row - 1, column) or
+                 self.found_word_at(board, word[1:], row, column + 1) or
+                 self.found_word_at(board, word[1:], row + 1, column) or
+                 self.found_word_at(board, word[1:], row, column - 1))
+
+        # Reset letter after doing recursive search
+        board[row][column] = current_letter
+
         return found
-        
-    def outOfBounds(self, board, row, column):
-        return self.rowOutOfBounds(board, row) or self.columnOutOfBounds(board, column)
-    
-    def rowOutOfBounds(self, board, row):
-        maxRowIndex = len(board) - 1
-        return not 0 <= row <= maxRowIndex
-        
-    def columnOutOfBounds(self, board, column):
-        maxColumnIndex = len(board[0]) - 1
-        return not 0 <= column <= maxColumnIndex
+
+    def out_of_bounds(self, board, row, column):
+        return self.row_out_of_bounds(board, row) or self.column_out_of_bounds(board, column)
+
+    def row_out_of_bounds(self, board, row):
+        max_row_index = len(board) - 1
+        return not 0 <= row <= max_row_index
+
+    def column_out_of_bounds(self, board, column):
+        max_column_index = len(board[0]) - 1
+        return not 0 <= column <= max_column_index
