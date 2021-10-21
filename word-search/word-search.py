@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/word-search/
 
+import unittest
 from typing import List
 
 class Solution:
@@ -45,3 +46,17 @@ class Solution:
     def column_out_of_bounds(self, board, column):
         max_column_index = len(board[0]) - 1
         return not 0 <= column <= max_column_index
+
+
+class TestWordSearch(unittest.TestCase):
+
+    def test_word_search(self):
+        word_search = Solution()
+        board = [["A","B","C","E"],
+                 ["S","F","C","S"],
+                 ["A","D","E","E"]]
+        word = "ABCCED"
+        self.assertTrue(word_search.exist(board, word))
+
+if __name__ == '__main__':
+    unittest.main()
