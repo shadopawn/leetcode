@@ -53,5 +53,5 @@ class TestNoteMaking(unittest.TestCase):
         return "".join(random.choice(self.alphabet) for _ in range(magazine_length))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main(verbosity=2)
