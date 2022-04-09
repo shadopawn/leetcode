@@ -1,3 +1,8 @@
+'''
+Given two string note and magazine, return true if note can be constructed from magazine and false other wise.
+Each letter in magazine can only be used once in note. 
+'''
+
 import unittest
 from collections import Counter
 import string
