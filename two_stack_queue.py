@@ -1,3 +1,5 @@
+# leetcode link https://leetcode.com/problems/implement-queue-using-stacks/
+
 example_input = [(1, 42), (2, -1), (1, 14), (3, -1), (1, 28),
                  (3, -1), (1, 60), (1, 70), (2, -1), (2, -1), (3, -1)]
 
